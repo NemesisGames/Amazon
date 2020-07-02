@@ -1,31 +1,39 @@
-﻿namespace Amazon.DynamoDb
+﻿using System;
+using System.Linq;
+
+namespace Amazon.DynamoDb
 {
     internal static class DynamoKeyword
     {
+        private static string[] RESERVED_KEYWORDS = new string[]
+        {
+            "agent",
+            "action",
+            "commit",
+            "count",
+            "counter",
+            "data",
+            "date",
+            "format",
+            "hash",
+            "key",
+            "language",
+            "lock",
+            "mode",
+            "name",
+            "position",
+            "source",
+            "status",
+            "ttl",
+            "type",
+            "value",
+        };
+
         public static bool IsReserved(string name)
         {
-            switch (name)
+            if (RESERVED_KEYWORDS.Contains(name, StringComparer.OrdinalIgnoreCase))
             {
-                case "agent":
-                case "action":
-                case "commit":
-                case "count":
-                case "counter":
-                case "data":
-                case "date":
-                case "format":
-                case "hash":
-                case "key":
-                case "language":
-                case "lock":
-                case "mode":
-                case "name":
-                case "position":
-                case "source":
-                case "status":
-                case "ttl":
-                case "type":
-                case "value": return true;
+                return true;
             }
 
             return false;

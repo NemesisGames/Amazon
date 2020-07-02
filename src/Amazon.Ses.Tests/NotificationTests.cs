@@ -54,7 +54,7 @@ namespace Amazon.Ses.Tests
             Assert.Equal(SesNotificationType.Bounce, notification.NotificationType);
 
             Assert.Equal(SesBounceType.Permanent, notification.Bounce.BounceType);
-            Assert.Equal(SesBounceSubtype.Suppressed, notification.Bounce.BounceSubtype);
+            Assert.Equal(SesBounceSubtype.Suppressed, notification.Bounce.BounceSubType);
 
             Assert.Equal("Amazon SES has suppressed sending to this address because it has a recent history of bouncing as an invalid address. For more information about how to remove an address from the suppression list, see the Amazon SES Developer Guide: http://docs.aws.amazon.com/ses/latest/DeveloperGuide/remove-from-suppressionlist.html", notification.Bounce.BouncedRecipients[0].DiagnosticCode);
 

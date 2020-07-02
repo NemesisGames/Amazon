@@ -313,7 +313,7 @@ namespace Amazon.S3
         {
             var batch = new DeleteBatch(keys);
 
-            var request = new BatchDeleteRequest(client.Host, bucketName, batch);
+            var request = new DeleteObjectBatchRequest(client.Host, bucketName, batch);
 
             var result = await client.DeleteObjectsAsync(request).ConfigureAwait(false);
 

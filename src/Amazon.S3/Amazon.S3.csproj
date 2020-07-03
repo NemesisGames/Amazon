@@ -1,19 +1,20 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <AssemblyName>Amazon.S3</AssemblyName>
-    <Version>0.17.6</Version>
+    <AssemblyName>BHG.Amazon.S3</AssemblyName>
+    <Version>0.1.0</Version>
     <TargetFrameworks>netstandard2.0;netcoreapp3.1</TargetFrameworks>
     <LangVersion>8</LangVersion>
     <Nullable>enable</Nullable>
 
     <!-- Package Details-->
-    <Authors>iamcarbon</Authors>
+    <Authors>iamcarbon,BigHugeGames</Authors>
     <Copyright>© Jason Nelson</Copyright>
     <Description>A simple library for Amazon's Simple Storage Service.</Description>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageTags>aws;s3;netstandard</PackageTags>
     <RepositoryUrl>https://github.com/carbon/Amazon</RepositoryUrl>
+    <PackageId>BHG.Amazon.S3</PackageId>
   </PropertyGroup>
 
   <ItemGroup>

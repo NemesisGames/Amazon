@@ -1,19 +1,20 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <AssemblyName>Amazon.Kinesis.Firehose</AssemblyName>
-    <Version>0.7.0</Version>
+    <AssemblyName>BHG.Amazon.Kinesis.Firehose</AssemblyName>
+    <Version>0.1.0</Version>
     <TargetFrameworks>netstandard2.0;netcoreapp3.1</TargetFrameworks>
     <LangVersion>8</LangVersion>
     <Nullable>enable</Nullable>
 
     <!-- Package Details-->
-    <Authors>iamcarbon</Authors>
+    <Authors>iamcarbon,BigHugeGames</Authors>
     <Copyright>© Jason Nelson</Copyright>
     <Description>A modern .NET Standard library for Kinesis Firehose.</Description>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageTags>aws;kinesis;firehose;netstandard</PackageTags>
     <RepositoryUrl>https://github.com/carbon/Amazon</RepositoryUrl>
+    <PackageId>BHG.Amazon.Kinesis.Firehose</PackageId>
   </PropertyGroup>
 
   <ItemGroup>

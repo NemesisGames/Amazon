@@ -1,19 +1,20 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <AssemblyName>Amazon.Core</AssemblyName>
-    <Version>0.17.1</Version>
+    <AssemblyName>BHG.Amazon.Core</AssemblyName>
+    <Version>0.1.0</Version>
     <TargetFrameworks>netstandard2.0;netcoreapp3.1</TargetFrameworks>
     <LangVersion>8</LangVersion>
     <Nullable>enable</Nullable>
 
     <!-- Package Details-->
-    <Authors>iamcarbon</Authors>
+    <Authors>iamcarbon,BigHugeGames</Authors>
     <Copyright>© Jason Nelson</Copyright>
     <Description>Shared library for Amazon API implementations.</Description>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageTags>aws;netstandard</PackageTags>
-    <RepositoryUrl>https://github.com/carbon/Amazon</RepositoryUrl>
+    <RepositoryUrl>https://github.com/NemesisGames/Amazon</RepositoryUrl>
+    <PackageId>BHG.Amazon.Core</PackageId>
   </PropertyGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">

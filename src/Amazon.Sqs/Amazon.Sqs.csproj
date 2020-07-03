@@ -1,20 +1,22 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <AssemblyName>Amazon.Sqs</AssemblyName>
+    <AssemblyName>BHG.Amazon.Sqs</AssemblyName>
     <VersionPrefix>0.17.0</VersionPrefix>
     <TargetFrameworks>netstandard2.0;netcoreapp3.1</TargetFrameworks>
     <LangVersion>8</LangVersion>
     <Nullable>enable</Nullable>
 
     <!-- Package Details-->
-    <Authors>iamcarbon</Authors>
+    <Authors>iamcarbon,BigHugeGames</Authors>
     <Copyright>© Jason Nelson</Copyright>
     <Description>A simple library for Amazon's Simple Queue Service.</Description>
     
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageTags>aws;sqs;netstandard</PackageTags>
     <RepositoryUrl>https://github.com/carbon/Amazon</RepositoryUrl>
+    <PackageId>BHG.Amazon.Sqs</PackageId>
+    <Version>0.1.0</Version>
   </PropertyGroup>
 
   <ItemGroup>

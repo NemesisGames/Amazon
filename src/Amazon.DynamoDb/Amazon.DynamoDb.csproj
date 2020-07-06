@@ -15,7 +15,7 @@
     <PackageTags>aws;dynamodb;netstandard</PackageTags>
     <RepositoryUrl>https://github.com/NemesisGames/Amazon</RepositoryUrl>
     <PackageId>BHG.Amazon.DynamoDb</PackageId>
-    <Version>0.1.9</Version>
+    <Version>0.1.11</Version>
   </PropertyGroup>
 
   <ItemGroup>

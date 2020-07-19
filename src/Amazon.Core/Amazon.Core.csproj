@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <AssemblyName>BHG.Amazon.Core</AssemblyName>
-    <Version>0.1.1</Version>
+    <Version>0.1.2</Version>
     <TargetFrameworks>netstandard2.0;netcoreapp3.1</TargetFrameworks>
     <LangVersion>8</LangVersion>
     <Nullable>enable</Nullable>

@@ -1,11 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Amazon.DynamoDb
 {
-    internal static class DynamoKeyword
+    public static class DynamoKeyword
     {
-        private static string[] RESERVED_KEYWORDS = new string[]
+        private static HashSet<string> RESERVED_KEYWORDS = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
         {
             "ABORT",
             "ABSOLUTE",
@@ -584,7 +585,7 @@ namespace Amazon.DynamoDb
 
         public static bool IsReserved(string name)
         {
-            if (RESERVED_KEYWORDS.Contains(name, StringComparer.OrdinalIgnoreCase))
+            if (RESERVED_KEYWORDS.Contains(name))
             {
                 return true;
             }

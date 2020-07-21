@@ -39,7 +39,7 @@ namespace Amazon.DynamoDb
 
         public string TableName { get; }
 
-        public int Limit { get; set; }
+        public int? Limit { get; set; }
 
         public int? Segment { get; set; }
 
@@ -53,7 +53,7 @@ namespace Amazon.DynamoDb
 
         public AttributeCollection? ExpressionAttributeValues { get; set; }
 
-        public SelectEnum Select { get; set; }
+        public SelectEnum? Select { get; set; }
 
         public string? ProjectionExpression { get; set; }
     }

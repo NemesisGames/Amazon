@@ -23,6 +23,12 @@ namespace Amazon.DynamoDb
             Add<double>(new DoubleConverter());
             Add<float>(new SingleConverter());
             Add(new GuidConverter());
+            Add<byte>(new ByteConverter());
+            Add<sbyte>(new SByteConverter());
+            Add<UInt16>(new UInt16Converter());
+            Add<UInt32>(new UInt32Converter());
+            Add<UInt64>(new UInt64Converter());
+            Add<Int16>(new Int16Converter());
             Add<Int32>(new Int32Converter());
             Add<Int64>(new Int64Converter());
             Add<string>(new StringConverter());
@@ -34,6 +40,9 @@ namespace Amazon.DynamoDb
             Add<Int16[]>(new ArrayConverter<Int16>());
             Add<Int32[]>(new ArrayConverter<Int32>());
             Add<Int64[]>(new ArrayConverter<Int64>());
+            Add<UInt16[]>(new ArrayConverter<UInt16>());
+            Add<UInt32[]>(new ArrayConverter<UInt32>());
+            Add<UInt64[]>(new ArrayConverter<UInt64>());
             Add<float[]>(new ArrayConverter<float>());
             Add<double[]>(new ArrayConverter<double>());
             Add<DbValue[]>(new DbValueArrayConverter());

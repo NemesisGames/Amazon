@@ -271,12 +271,17 @@ namespace Amazon.DynamoDb
 		}
 
 		public readonly float ToSingle() => Convert.ToSingle(value);
+		public readonly byte ToByte() => Convert.ToByte(value);
+		public readonly sbyte ToSByte() => Convert.ToSByte(value);
 
 		public readonly short ToInt16() => Convert.ToInt16(value);
+		public readonly ushort ToUInt16() => Convert.ToUInt16(value);
 
 		public readonly int ToInt() => Convert.ToInt32(value);
+		public readonly uint ToUInt32() => Convert.ToUInt32(value);
 
 		public readonly long ToInt64() => Convert.ToInt64(value);
+		public readonly ulong ToUInt64() => Convert.ToUInt64(value);
 
 		public readonly double ToDouble() => Convert.ToDouble(value);
 

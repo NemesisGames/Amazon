@@ -1,9 +1,37 @@
-﻿using Xunit;
+﻿using Amazon.DynamoDb.JsonConverters;
+using System;
+using Xunit;
 
 namespace Amazon.DynamoDb
 {
     public class DbConvertersTests
     {
+        private readonly static Type[] NUMBER_TYPES = new Type[]
+        {
+            typeof(sbyte),
+            typeof(short),
+            typeof(int),
+            typeof(long),
+            typeof(byte),
+            typeof(ushort),
+            typeof(uint),
+            typeof(ulong),
+            typeof(float),
+            typeof(double),
+            typeof(decimal)
+        };
+
+        [Fact]
+        public void SerializerAllNumberTypesTest()
+        {
+            foreach (var type in NUMBER_TYPES)
+            {
+                var converter = DbValueConverterFactory.Get(type);
+
+                Assert.Equal(type, converter.ToObject(new DbValue(15), null).GetType());
+            }
+        }
+
         [Fact]
         public void SerializeBoolTest()
         {

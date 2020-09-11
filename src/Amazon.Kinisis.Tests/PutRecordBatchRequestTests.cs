@@ -32,7 +32,7 @@ namespace Amazon.Kinesis.Tests
 
             var result = JsonConvert.SerializeObject(request, serializationOptions);
 
-            var result2 = KinesisFirehoseClient.ConvertBatchRequestToJsonManually<PutRecordBatchRequest>(request);
+            var result2 = KinesisFirehoseClient.ConvertBatchRequestToJsonManually(request);
 
             Assert.Equal(text, result);
             Assert.Equal(text, result2);

@@ -87,9 +87,9 @@ namespace Amazon.Kinesis.Firehose
         private HttpRequestMessage GetRequestMessage<T>(string action, T request)
         {
             string json;
-            if (typeof(T) == typeof(PutRecordBatchRequest))
+            if (request is PutRecordBatchRequest)
             {
-                json = ConvertBatchRequestToJsonManually(request);
+                json = ConvertBatchRequestToJsonManually(request as PutRecordBatchRequest);
             }
             else
             {
@@ -105,29 +105,34 @@ namespace Amazon.Kinesis.Firehose
             };
         }
 
-        public static string ConvertBatchRequestToJsonManually<T>(T request)
+        [ThreadStatic] private static StringBuilder? mScratchStringBuilder = null;
+        public static string ConvertBatchRequestToJsonManually(PutRecordBatchRequest batchRequest)
         {
-            string json;
-            var batchRequest = request as PutRecordBatchRequest;
+            if (KinesisFirehoseClient.mScratchStringBuilder == null)
+            {
+                KinesisFirehoseClient.mScratchStringBuilder = new StringBuilder();
+            }
 
-            StringBuilder jsonBuilder = new StringBuilder();
-            jsonBuilder.Append(@"{""DeliveryStreamName"":""");
-            jsonBuilder.Append(batchRequest.DeliveryStreamName);
-            jsonBuilder.Append(@""",""Records"":[");
+            string json;
+
+            mScratchStringBuilder.Clear();
+            mScratchStringBuilder.Append(@"{""DeliveryStreamName"":""");
+            mScratchStringBuilder.Append(batchRequest.DeliveryStreamName);
+            mScratchStringBuilder.Append(@""",""Records"":[");
             for (int i = 0; i < batchRequest.Records.Length; i++)
             {
                 var record = batchRequest.Records[i];
 
                 if (i > 0)
                 {
-                    jsonBuilder.Append(",");
+                    mScratchStringBuilder.Append(",");
                 }
-                jsonBuilder.Append(@"{""Data"":""");
-                jsonBuilder.Append(Convert.ToBase64String(record.Data));
-                jsonBuilder.Append(@"""}");
+                mScratchStringBuilder.Append(@"{""Data"":""");
+                mScratchStringBuilder.Append(Convert.ToBase64String(record.Data));
+                mScratchStringBuilder.Append(@"""}");
             }
-            jsonBuilder.Append("]}");
-            json = jsonBuilder.ToString();
+            mScratchStringBuilder.Append("]}");
+            json = mScratchStringBuilder.ToString();
             return json;
         }
 

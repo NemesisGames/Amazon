@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Net.Http;
 using System.Text;
-using System.Text.Json;
+using Newtonsoft.Json;
 using System.Threading.Tasks;
+using Newtonsoft.Json.Serialization;
 
 namespace Amazon.Kinesis.Firehose
 {
@@ -10,6 +11,16 @@ namespace Amazon.Kinesis.Firehose
     {
         const string Version = "20150804";
         const string TargetPrefix = "Firehose_" + Version;
+
+        private static readonly JsonSerializerSettings serializationOptions;
+
+        static KinesisFirehoseClient()
+        {
+            serializationOptions = new JsonSerializerSettings 
+            { 
+                NullValueHandling = NullValueHandling.Ignore,
+            };
+        }
 
         public KinesisFirehoseClient(AwsRegion region, IAwsCredential credential)
             : base(AwsService.KinesisFirehose, region, credential) { }
@@ -60,7 +71,7 @@ namespace Amazon.Kinesis.Firehose
 
             var responseText = await SendAsync(httpRequest).ConfigureAwait(false);
 
-            return JsonSerializer.Deserialize<TResult>(responseText);
+            return JsonConvert.DeserializeObject<TResult>(responseText, serializationOptions);
         }
 
         protected override async Task<Exception> GetExceptionAsync(HttpResponseMessage response)
@@ -72,11 +83,18 @@ namespace Amazon.Kinesis.Firehose
             throw new Exception(responseText);
         }
 
-        private static readonly JsonSerializerOptions serializationOptions = new JsonSerializerOptions { IgnoreNullValues = true };
 
         private HttpRequestMessage GetRequestMessage<T>(string action, T request)
         {
-            var json = JsonSerializer.Serialize(request, serializationOptions);
+            string json;
+            if (typeof(T) == typeof(PutRecordBatchRequest))
+            {
+                json = ConvertBatchRequestToJsonManually(request);
+            }
+            else
+            {
+                json = JsonConvert.SerializeObject(request, serializationOptions);
+            }
 
             return new HttpRequestMessage(HttpMethod.Post, Endpoint)
             {
@@ -85,6 +103,32 @@ namespace Amazon.Kinesis.Firehose
                 },
                 Content = new StringContent(json, Encoding.UTF8, "application/x-amz-json-1.1")
             };
+        }
+
+        public static string ConvertBatchRequestToJsonManually<T>(T request)
+        {
+            string json;
+            var batchRequest = request as PutRecordBatchRequest;
+
+            StringBuilder jsonBuilder = new StringBuilder();
+            jsonBuilder.Append(@"{""DeliveryStreamName"":""");
+            jsonBuilder.Append(batchRequest.DeliveryStreamName);
+            jsonBuilder.Append(@""",""Records"":[");
+            for (int i = 0; i < batchRequest.Records.Length; i++)
+            {
+                var record = batchRequest.Records[i];
+
+                if (i > 0)
+                {
+                    jsonBuilder.Append(",");
+                }
+                jsonBuilder.Append(@"{""Data"":""");
+                jsonBuilder.Append(Convert.ToBase64String(record.Data));
+                jsonBuilder.Append(@"""}");
+            }
+            jsonBuilder.Append("]}");
+            json = jsonBuilder.ToString();
+            return json;
         }
 
         #endregion

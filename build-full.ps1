@@ -1,0 +1,2 @@
+dotnet publish ./src/Amazon.Core             --framework netstandard2.0 -c Release -o ./release/Amazon.Core
+dotnet publish ./src/Amazon.Kinesis.Firehose --framework netstandard2.0 -c Release -o ./release/Amazon.Kinesis.Firehose
